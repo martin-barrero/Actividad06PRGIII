@@ -28,3 +28,25 @@ hermana_de(X, Y) :-
     member(mujer(X), Hijos),
     (member(hombre(Y), Hijos); member(mujer(Y), Hijos)),
     X \= Y.
+
+tio_de(X, Y) :- 
+    (padre_de(Z, Y) ; madre_de(Z,Y)), hermano_de(X, Z).
+
+tia_de(X, Y) :- 
+    (padre_de(Z, Y) ; madre_de(Z,Y)), hermana_de(X, Z).
+
+primo_de(X, Y) :- 
+    (padre_de(Z, X); madre_de(Z, X)), 
+    (padre_de(W, Y); madre_de(W, Y)), 
+    (hermano_de(Z, W); hermana_de(Z, W)),
+    hombre(X). 
+
+prima_de(X, Y) :- 
+    (padre_de(Z, X); madre_de(Z, X)), 
+    (padre_de(W, Y); madre_de(W, Y)), 
+    (hermano_de(Z, W); hermana_de(Z, W)),
+    mujer(X). 
+
+
+
+
