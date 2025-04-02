@@ -1,10 +1,15 @@
-padre_de(hombre(homero), [hombre(bart), mujer(lisa), mujer(maggie)]).
-padre_de(hombre(abraham), [hombre(herbert), hombre(homero)]).
-padre_de(hombre(clancy), [mujer(marge), mujer(patty), mujer(selma)]).
-madre_de(mujer(mona), [hombre(homero)]).
-madre_de(mujer(jacqueline), [mujer(marge), mujer(patty), mujer(selma)]).
-madre_de(mujer(marge), [hombre(bart), mujer(lisa), mujer(maggie)]).
-madre_de(mujer(selma), [hijo(ling)]).
+padre(hombre(abraham), [hombre(herbert), hombre(homero)]).
+padre(hombre(clancy), [mujer(marge), mujer(patty), mujer(selma)]).
+padre(hombre(homero), [hombre(bart), mujer(lisa), mujer(maggie)]).
+madre(mujer(mona), [hombre(homero)]).
+madre(mujer(jacqueline), [mujer(marge), mujer(patty), mujer(selma)]).
+madre(mujer(marge), [hombre(bart), mujer(lisa), mujer(maggie)]).
+madre(mujer(selma), [mujer(ling)]).
+
+padre_de(X, Y) :- padre(hombre(X), Hijos), 
+    (member(hombre(Y), Hijos); member(mujer(Y), Hijos)).
+madre_de(X, Y) :- madre(mujer(X), Hijos), 
+    (member(hombre(Y), Hijos); member(mujer(Y), Hijos)).
 
 abuelo_de(X, Y) :-
     padre_de(X, Z), (padre_de(Z, Y); madre_de(Z, Y)).
