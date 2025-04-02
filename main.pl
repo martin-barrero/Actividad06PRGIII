@@ -6,5 +6,3 @@ madre_de(mujer(jacqueline), [mujer(marge), mujer(patty), mujer(selma)]).
 madre_de(mujer(marge), [hombre(bart), mujer(lisa), mujer(maggie)]).
 madre_de(mujer(selma), [hijo(ling)]).
 
-padre_de(hombre(X), Hijos) :- padre_de(hombre(X), Hijos).
-madre_de(mujer(X), Hijos) :- madre_de(mujer(X), Hijos).
