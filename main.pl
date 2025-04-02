@@ -35,18 +35,16 @@ tio_de(X, Y) :-
 tia_de(X, Y) :- 
     (padre_de(Z, Y) ; madre_de(Z,Y)), hermana_de(X, Z).
 
-primo_de(X, Y) :- 
-    (padre_de(Z, X); madre_de(Z, X)), 
-    (padre_de(W, Y); madre_de(W, Y)), 
-    (hermano_de(Z, W); hermana_de(Z, W)),
-    hombre(X). 
+primo_de(X, Y) :-
+    (padre(hombre(_), Hijos); madre(hombre(_), Hijos)),
+    member(hombre(X), Hijos),
+    (tio_de(Z, Y); tia_de(Z, Y)),
+    (padre_de(Z, X); madre_de(Z, X)).
 
-prima_de(X, Y) :- 
-    (padre_de(Z, X); madre_de(Z, X)), 
-    (padre_de(W, Y); madre_de(W, Y)), 
-    (hermano_de(Z, W); hermana_de(Z, W)),
-    mujer(X). 
-
-
+prima_de(X, Y) :-
+    (padre(mujer(_), Hijos); madre(mujer(_), Hijos)),
+    member(mujer(X), Hijos),
+    (tio_de(Z, Y); tia_de(Z, Y)),
+    (padre_de(Z, X); madre_de(Z, X)).
 
 
